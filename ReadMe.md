@@ -19,9 +19,9 @@ This is a simple tool that allows you to create a 16x16 matrix of colors. You ca
 
 ## Screenshots
 
-![Screenshot 1](https://github.com/Mockooo/Mockooo-Tools/blob/main/%2FMockooo%2F16x16GameMatrixPictureCreator/Screenshots/Screenshot1.png)
-![Screenshot 2](https://github.com/Mockooo/Mockooo-Tools/blob/main/%2FMockooo%2F16x16GameMatrixPictureCreator/Screenshots/Screenshot2.png)
-![Screenshot 3](https://github.com/Mockooo/Mockooo-Tools/blob/main/%2FMockooo%2F16x16GameMatrixPictureCreator/Screenshots/Screenshot3.png)
+![Screenshot 1](https://github.com/Mockooo/Mockooo-Tools/blob/main/%2FMockooo%2F16x16GameMatrixPictureCreator/Screenshots/Screenshot-1.png)
+![Screenshot 2](https://github.com/Mockooo/Mockooo-Tools/blob/main/%2FMockooo%2F16x16GameMatrixPictureCreator/Screenshots/Screenshot-2.png)
+![Screenshot 3](https://github.com/Mockooo/Mockooo-Tools/blob/main/%2FMockooo%2F16x16GameMatrixPictureCreator/Screenshots/Screenshot-3.png)
 
 ## License
 
