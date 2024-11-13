@@ -1,0 +1,59 @@
+body {
+    background-color: rgba(81, 81, 81, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+
+.settings-container {
+    margin-left: 0.5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 10%;
+    height: 48%;
+    padding-top: 1%;
+    gap: 2%;
+    border-radius: 5px;
+    border: white solid 1px;
+}
+
+.Settings-Button {
+    width: 90%;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1.5rem;
+    padding: 1%;
+    transition: 0.2s;
+    cursor: pointer;
+    border: white solid 1px;
+}
+
+.Settings-Button:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.pickr {
+    margin-left: 2%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#matrix {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    width: 50vh;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.cell {
+    width: auto;
+    height: auto;
+}
