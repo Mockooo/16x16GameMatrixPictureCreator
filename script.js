@@ -4,6 +4,9 @@ let mouseDown = false;
 
 let currentcolor = {r:0,g:0,b:0,a:1.0};
 
+let actions = [];
+let coloractions = [];
+
 $(document).ready(function(){
     for(let i = 0; i < 16; i++){
         matrix[i] = []
@@ -30,7 +33,8 @@ $(document).mouseup(function () {
     mouseDown = false;
 });
 
-function setCell(x, y, color){
+function setCell(x, y, color, track = true){
+    let colorbefore = {r: matrix[x][y].r, g: matrix[x][y].g, b: matrix[x][y].b, a: matrix[x][y].a};
     if (color.a > 1){
         color.a = 255%color.a;
     }
@@ -41,6 +45,19 @@ function setCell(x, y, color){
     matrix[x][y].g = color.g;
     matrix[x][y].b = color.b;
     matrix[x][y].a = color.a;
+
+    if (track) {
+        if (colorbefore.r == color.r && colorbefore.g == color.g && colorbefore.b == color.b && colorbefore.a == color.a) {
+            return;
+        }
+        actions[actions.length+1] = {
+            x: x,
+            y: y,
+            color: color,
+            colorbefore: colorbefore
+        }
+    }
+
     return;
 }
 
@@ -57,8 +74,14 @@ function setCurrentColorRGB(r,g,b,a) {
     return;
 }
 
+function RevertOneAction() {
+    if(actions.length > 0){
+        let action = actions.pop();
+        actions.pop(1);
+        setCell(action.x, action.y, action.colorbefore, false);
+    }
+}
 
-// Initialize the Pickr instance
 const pickr = Pickr.create({
     el: '#color-picker',
     theme: 'classic',
@@ -88,18 +111,33 @@ const pickr = Pickr.create({
     }
 });
 
-// Add event listener for color change
-pickr.on('change', (color, instance) => {
+pickr.on('save', (color, instance) => {
     color = color.toRGBA();
-    setCurrentColorRGB(color[0], color[1], color[2], color[3]);
+    setCurrentColorRGB(Math.floor(color[0]), Math.floor(color[1]), Math.floor(color[2]), color[3]);
 });
 
 $("#Copy").click(function () { 
-    let copytext = arrayToJSON(matrix);
-    navigator.clipboard.writeText(copytext);
+    CopyToClipboard()
 });
 
 $("#Download").click(function () { 
+    DownloadToFile();
+});
+
+$("#Fill").click(function () { 
+    Fill()
+});
+
+$("#Back").click(function () { 
+    RevertOneAction();
+});
+
+function CopyToClipboard() {
+    let copytext = arrayToJSON(matrix);
+    navigator.clipboard.writeText(copytext);
+}
+
+function DownloadToFile() {
     let copytext = arrayToJSON(matrix);
     let blob = new Blob([copytext], {type: "text/plain;charset=utf-8"});
     let url = URL.createObjectURL(blob);
@@ -108,7 +146,15 @@ $("#Download").click(function () {
     a.download = "16x16GameMatrixPictureCreator.txt";
     a.click();
     URL.revokeObjectURL(url);
-});
+}
+
+function Fill() {
+    for(let i = 0; i < matrix.length; i++){
+        for(let j = 0; j < matrix[i].length; j++){
+            setCell(i, j, currentcolor);
+        }
+    }
+}
 
 function arrayToJSON(array) {
     let json = "{\n";
@@ -124,3 +170,44 @@ function arrayToJSON(array) {
     json += "\n}"
     return json;
 }
+
+let ctrl = false;
+function KeyPress(e) {
+    var evtobj = window.event? event : e
+
+    if (evtobj.ctrlKey) {
+        ctrl = true;
+    }
+
+    console.log(evtobj.keyCode)
+
+    if ((evtobj.keyCode == 90 && ctrl == true) || (evtobj.keyCode == 8)) {
+        RevertOneAction();
+        return;
+    }
+
+    if (evtobj.keyCode == 67 && ctrl == true) {
+        CopyToClipboard();
+        return;
+    }
+
+    if (evtobj.keyCode == 68 && ctrl == true) {
+        DownloadToFile();
+        return;
+    }
+
+    if (evtobj.keyCode == 70 && ctrl == true) {
+        Fill();
+        return;
+    }
+}
+function KeyRelease(e) {
+    var evtobj = window.event? event : e
+    if (evtobj.ctrlKey) {
+        setTimeout(() => {
+            ctrl = false;
+        }, 200);
+    }
+}
+document.onkeydown = KeyPress;
+document.onkeyup = KeyRelease;

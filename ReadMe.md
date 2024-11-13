@@ -7,8 +7,8 @@ This is a simple tool that allows you to create a 16x16 matrix of colors. You ca
 1. Open the HTML file in your browser. or use the link below.
 [16x16 Game Matrix Picture Creator](https://mockooo.github.io/16x16GameMatrixPictureCreator/)
 2. Use the mouse to select a color for each cell in the matrix.
-3. Click the "Copy To Clipboard" button to copy the matrix to the clipboard.
-4. Click the "Download" button to download the matrix as a text file.
+3. Click the "Copy To Clipboard" or use the keybind `CNTRL + C` to copy the matrix to the clipboard.
+4. Click the "Download" button or use the keybind `CNTRL + D` to download the matrix as a text file.
 
 ## Features
 
@@ -16,12 +16,22 @@ This is a simple tool that allows you to create a 16x16 matrix of colors. You ca
 - Provides a color picker for easy color selection.
 - Allows you to copy the matrix to the clipboard.
 - Allows you to download the matrix as a text file.
+- Allows you to fill the matrix with a single color.
+- Allows you to revert actions.
+- Keybinds for common actions.
 
 ## Screenshots
 
 ![Screenshot 1](https://github.com/Mockooo/16x16GameMatrixPictureCreator/blob/main/Screenshots/Screenshot-1.png)
 ![Screenshot 2](https://github.com/Mockooo/16x16GameMatrixPictureCreator/blob/main/Screenshots/Screenshot-2.png)
 ![Screenshot 3](https://github.com/Mockooo/16x16GameMatrixPictureCreator/blob/main/Screenshots/Screenshot-3.png)
+
+## Keybinds
+
+- `Backspace` or `CNTRL + Z` to revert the last action.
+- `CNTRL + C` to copy the matrix to the clipboard.
+- `CNTRL + D` to download the matrix as a text file.
+- `CNTRL + F` to fill the matrix with a single color.
 
 ## License
 
