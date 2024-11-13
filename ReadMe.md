@@ -5,7 +5,7 @@ This is a simple tool that allows you to create a 16x16 matrix of colors. You ca
 ## How to Use
 
 1. Open the HTML file in your browser. or use the link below.
-[16x16 Game Matrix Picture Creator](https://github.com/Mockooo/Mockooo-Tools/tree/main/%2FMockooo%2F16x16GameMatrixPictureCreator)
+[16x16 Game Matrix Picture Creator](https://mockooo.github.io/16x16GameMatrixPictureCreator/)
 2. Use the mouse to select a color for each cell in the matrix.
 3. Click the "Copy To Clipboard" button to copy the matrix to the clipboard.
 4. Click the "Download" button to download the matrix as a text file.
