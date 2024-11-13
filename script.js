@@ -132,6 +132,45 @@ $("#Back").click(function () {
     RevertOneAction();
 });
 
+$("#Send").click(function() {
+    let json = arrayToJSON(matrix);
+    json = json.replace(/\n/g, ''); // Remove all newline characters if present
+
+    const jsonBlob = new Blob([json], { type: 'application/json' }); // Directly use `json` here
+
+    const formData = new FormData();
+    formData.append('payload_json', JSON.stringify({
+        username: "16x16 Game Matrix Picture Creator Image Sugestor",
+        content: "Here is your picture!"
+    }));
+    formData.append('file', jsonBlob, 'matrix.json');  // Attaching the JSON file
+
+    const request = new XMLHttpRequest();
+    request.open("POST", "https://discord.com/api/webhooks/1306360908804657203/JZ469TcGNEaql-NNKm3Muzvqi4IV9gOKauwZnRZt-_ABBO6GzNt1-V6VHH_pIWPaL2Wy");
+    
+    request.send(formData);  // Send the FormData with the JSON file
+});
+
+$("#Paste").click(function () { 
+    navigator.clipboard.readText().then((clipboard) => {
+        clipboard = clipboard.replace("/", '');
+        try {
+            let json = JSON.parse(clipboard);
+
+            // Loop through the JSON and set cells
+            for (let i = 0; i < json.length; i++) {
+                for (let j = 0; j < json[i].length; j++) {
+                    setCell(i, j, json[i][j]);
+                }
+            }
+        } catch (error) {
+            console.error("Failed to parse JSON from clipboard:", error);
+        }
+    }).catch((error) => {
+        console.error("Failed to read clipboard:", error);
+    });
+});
+
 function CopyToClipboard() {
     let copytext = arrayToJSON(matrix);
     navigator.clipboard.writeText(copytext);
@@ -157,17 +196,7 @@ function Fill() {
 }
 
 function arrayToJSON(array) {
-    let json = "{\n";
-    for(let i = 0; i < array.length; i++){
-        json += "{";
-        for(let j = 0; j < array[i].length; j++){
-            json += `{${array[i][j].r},${array[i][j].g},${array[i][j].b},${array[i][j].a}},`;
-        }
-        json = json.slice(0, -1);
-        json += "},\n"
-    }
-    json = json.slice(0, -2);
-    json += "\n}"
+    let json = JSON.stringify(array);
     return json;
 }
 
