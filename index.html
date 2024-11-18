@@ -14,11 +14,20 @@
             <h1>16x16 Game Matrix Picture Creator</h1>
             <div class="header-Buttons">
                 <button id="Picture" class="Settings-Button">Single Picture</button>
-                <!-- <button id="Animation" class="Settings-Button">Animation</button> -->
+                <button id="Animation" class="Settings-Button">Animation</button>
             </div>
         </div>
 
         <div class="body">
+            <div class="settings-container">
+                <input type="radio" name="tools" checked id="pen" class="Settings-Radio ToolSelection">pen</input>
+                <input type="radio" name="tools" id="brush" class="Settings-Radio ToolSelection">brush</input>
+                <input type="radio" name="tools" id="eraser" class="Settings-Radio ToolSelection">eraser</input>
+                <input type="radio" name="tools" id="fill" class="Settings-Radio ToolSelection">fill</input>
+                <input type="number" id="Size" max="16" min="1" value="1" style="text-align: center;" class="Settings-Input">Size</input>
+                <input type="number" id="Deckkraft" max="100" min="0" value="100" style="text-align: center;" class="Settings-Input">Deckkraft</input>
+            </div>
+
             <div class="matrix-container">
                 <div id="matrix"></div>
             </div>
@@ -26,11 +35,13 @@
             <div class="settings-container">
                 <div id="color-picker"></div>
                 <button id="Copy" class="Settings-Button">Copy To Clipboard</button>
-                <button id="Download" class="Settings-Button">Download</button>
+                <button id="DownloadJSON" class="Settings-Button">Download JSON</button>
+                <button id="DownloadPNG" class="Settings-Button">Download PNG</button>
                 <button id="Fill" class="Settings-Button">Fill</button>
                 <button id="Back" class="Settings-Button">Back</button>
                 <button id="Send" class="Settings-Button">Send to Mocko</button>
                 <button id="Paste" class="Settings-Button">Paste From Clipboard</button>
+                <button id="Grid" class="Settings-Button">Grid</button>
             </div>
         </div>
         
